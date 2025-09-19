@@ -1,4 +1,4 @@
-const configTemplate = (title, context, footer) => {
+const configTemplate = (title, content, footer) => {
   return `
     <!DOCTYPE html>
     <html>
@@ -43,7 +43,7 @@ const configTemplate = (title, context, footer) => {
               <h3>${title}</h3>
             </div>
             <div class="email-body">
-              <p>${context}</p>
+              <p>${content}</p>
             </div>
             <div class="email-footer">
               <p>${footer}</p>

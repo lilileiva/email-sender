@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Email Sender API
+  version: 1.0.0
+
+paths:
+  /upload:
+    post:
+      summary: Send an email with attachment
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary 
+                from:
+                  type: string
+                to:
+                  type: string
+                subject:
+                  type: string
+                title:
+                  type: string
+                content:
+                  type: string
+                footer:
+                  type: string
+                text:
+                  type: string
+              required:
+                - from
+                - to
+                - subject
+              oneOf:
+                - required: [text]
+                - required: [content, title, footer]
+
+      responses:
+        '201':
+          description: Email sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email sent successfully
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid input data
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error

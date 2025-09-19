@@ -36,8 +36,4 @@ npm run dev
 
 ## Docs
 
-[POST] /send-email
-
-Body: form-data
-
-from: 
+http://localhost:3000/api-docs

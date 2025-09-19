@@ -20,6 +20,8 @@ https://myaccount.google.com/apppasswords
 PORT=3000
 SMTP_EMAIL=example@gmail.com
 SMTP_PASS="google app pass"
+API_KEY="api_key"
+ALLOWED_DOMAINS="http://localhost:3000,http://otherdomain"
 ```
 
 ### 3. Install dependencies

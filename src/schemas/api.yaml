@@ -7,6 +7,13 @@ paths:
   /upload:
     post:
       summary: Send an email with attachment
+      headers:
+        - name: x-api-key
+          in: header
+          required: true
+          schema:
+            type: string
+          description: API key for authentication
       requestBody:
         required: true
         content:
@@ -60,6 +67,16 @@ paths:
                   error:
                     type: string
                     example: Invalid input data
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
         '500':
           description: Server error
           content:

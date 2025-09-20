@@ -2,8 +2,10 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import YAML from "yamljs";
+import yaml from "js-yaml";
+import fs from "fs";
 import router from './routes/index.js';
+import path from "path";
 
 import timeLogMiddleware from "./middlewares/timeLog.middleware.js";
 import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js";
@@ -18,12 +20,16 @@ const app = express();
 app.use(cors());
 app.use(timeLogMiddleware);
 app.use(errorHandlerMiddleware);
-app.use(corsMiddleware);
-app.use(apiKeyMiddleware);
+
+if (process.env.ENVIROMENT !== "local") {
+  app.use(corsMiddleware);
+  app.use(apiKeyMiddleware);
+}
 
 const port = process.env.PORT || 3000;
 
-const openapiDocument = YAML.load("./src/schemas/api.yaml");
+const docs = fs.readFileSync(path.resolve("src/schemas/api.yaml"), "utf8");
+const openapiDocument = yaml.load(docs);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

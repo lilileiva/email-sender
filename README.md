@@ -17,11 +17,12 @@ https://myaccount.google.com/apppasswords
 ### 2. Create .env file and set variables
 
 ```
+ENVIROMENT=local
 PORT=3000
 SMTP_EMAIL=example@gmail.com
 SMTP_PASS="google app pass"
 API_KEY="api_key"
-ALLOWED_DOMAINS="http://localhost:3000,http://otherdomain"
+ALLOWED_DOMAINS="http://domain,http://otherdomain"
 ```
 
 ### 3. Install dependencies

@@ -1,4 +1,4 @@
-const allowedDomains = process.env.ALLOWED_DOMAINS.split(',') || [];
+const allowedDomains = process.env.ALLOWED_CORS_DOMAINS.split(',') || [];
 
 const corsMiddleware = (req, res, next) => {
 

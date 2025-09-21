@@ -7,7 +7,6 @@ const upload = multer();
 const router = express.Router();
 
 router.post('/send-email', upload.single("file"), async (req, res) => {
-
     if (
         !req.body.from || !req.body.to || !req.body.subject
     ) {

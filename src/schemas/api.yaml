@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 
 paths:
-  /upload:
+  /send-email:
     post:
       summary: Send an email with attachment
       headers:
@@ -32,12 +32,16 @@ paths:
                   type: string
                 title:
                   type: string
+                  description: Required if HTML template is sent
                 content:
                   type: string
+                  description: Required if HTML template is sent
                 footer:
                   type: string
+                  description: Required if HTML template is sent
                 text:
                   type: string
+                  description: Required if text email is sent
               required:
                 - from
                 - to

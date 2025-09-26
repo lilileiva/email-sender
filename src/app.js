@@ -17,8 +17,7 @@ dotenv.config();
 
 const app = express();
 
-
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
 const docs = fs.readFileSync(path.resolve("src/schemas/api.yaml"), "utf8");
 const openapiDocument = yaml.load(docs);
@@ -34,6 +33,9 @@ if (process.env.ENVIROMENT !== "local") {
 }
 app.use(requestLogMiddleware);
 
+app.get('/healthz', (req, res) => {
+  res.status(200).json({ status: "OK" });
+});
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiDocument));
 app.use('', router);
 app.use((req, res, next) => {

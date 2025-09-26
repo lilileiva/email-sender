@@ -23,27 +23,39 @@ https://myaccount.google.com/apppasswords
 
 ```
 ENVIROMENT=local
-PORT=3000
+PORT=9000
 SMTP_EMAIL=example@gmail.com
 SMTP_PASS="google app pass"
 API_KEY="api_key"
-ALLOWED_CORS_DOMAINS="http://domain,http://otherdomain"
+ALLOWED_CORS_DOMAINS="http://localhost:9000,http://otherdomain"
 ```
 
-### 3. Install dependencies
+### 3. Run app with Docker or local
+
+#### Local
 
 ```
 npm i
 ```
-
-### 4. Run app
-
 ```
 npm run dev
 ```
 
+#### Docker
+
+```
+docker compose build
+```
+
+```
+docker compose up
+```
+
+### 4. App ready at port 9000 (or defined port)
+
+
 ## Docs
 
-http://localhost:3000/api-docs
+http://localhost:9000/api-docs
 
 ![alt text](image.png)

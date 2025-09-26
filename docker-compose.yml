@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  email-sender:
+    env_file: ".env"
+    environment:
+      - PORT=${PORT}
+    build: .
+    container_name: email-sender
+    ports:
+      - "${PORT}:${PORT}"
+    restart: always

@@ -24,6 +24,7 @@ https://myaccount.google.com/apppasswords
 ```
 ENVIROMENT=local
 PORT=9000
+LOG_LEVEL=debug
 SMTP_EMAIL=example@gmail.com
 SMTP_PASS="google app pass"
 API_KEY="api_key"

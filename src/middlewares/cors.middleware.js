@@ -1,10 +1,13 @@
+import { getLogger } from "../utils/logger.js";
 const allowedDomains = process.env.ALLOWED_CORS_DOMAINS.split(',') || [];
+
+const logger = getLogger();
 
 const corsMiddleware = (req, res, next) => {
 
     const origin = req.headers["origin"];
 
-    console.log("Origin:", origin);
+    logger.debug("Origin:", origin);
 
     if (!allowedDomains.includes(origin)) {
         return res.status(403).json({ error: "Forbidden" });

@@ -1,6 +1,9 @@
+import { getLogger } from "../utils/logger.js";
+
+const logger = getLogger();
+
 function requestLogMiddleware(req, res, next) {
-    const time = new Date(Date.now()).toString();
-    console.log(`[${time}] ${req.method} ${req.hostname} ${req.path}`);
+    logger.info(`${req.method} ${req.hostname} ${req.path}`);
     next();
 };
 

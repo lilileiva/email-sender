@@ -1,8 +1,10 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import configTemplate from "./template.js";
+import { getLogger } from "../utils/logger.js";
 
 dotenv.config();
+const logger = getLogger();
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -42,9 +44,9 @@ const sendEmail = async (payload, file) => {
         };
 
         const info = await transporter.sendMail(mailOptions);
-        console.log("Message sent: %s", info.messageId);
+        logger.info(`Message sent: ${info.messageId}`);
     } catch (err) {
-        console.error("Error while sending mail", err);
+        logger.error("Error while sending mail", err);
         throw err;
     }
 };

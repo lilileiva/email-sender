@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import configTemplate from "./template.js";
 import { getLogger } from "../utils/logger.js";
 
 dotenv.config();
@@ -20,19 +19,14 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (payload, file) => {
     try {
         const mailOptions = {
-            from: payload.from, // from "Example Team" <team@example.com>
-            to: payload.to, // list of receivers ("alice@example.com, bob@example.com")
+            from: payload.from, // from "Example From <from@example.com>"
+            to: payload.to, // receiver "alice@example.com" or list of receivers "alice@example.com, bob@example.com"
             subject: payload.subject,
         };
         if (payload.text) {
             mailOptions.text = payload.text;
         } else {
-            const template = configTemplate(
-                payload.title || "No Content",
-                payload.content || "No Content",
-                payload.footer || "No Content"
-            );
-            mailOptions.html = template;
+            mailOptions.html = payload.html;
         };
 
         if (file) {

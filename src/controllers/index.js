@@ -9,12 +9,9 @@ const sendEmailController = async (req, res) => {
         });
     };
 
-    if (
-        !req.body.text && (!req.body.title || !req.body.content || !req.body.footer
-
-        )) {
+    if (!req.body.text && !req.body.html) {
         return res.status(400).json({
-            error: 'Missing either text field or required fields for HTML email: title, content, footer'
+            error: 'Missing either text or html field'
         });
     }
 
@@ -22,9 +19,7 @@ const sendEmailController = async (req, res) => {
         from: req.body.from,
         to: req.body.to,
         subject: req.body.subject,
-        title: req.body.title,
-        content: req.body.content,
-        footer: req.body.footer,
+        html: req.body.html,
         text: req.body.text,
     }, req.file);
     res.status(201).json({ message: 'Email sent successfully' });

@@ -11,6 +11,7 @@ import requestLogMiddleware from "./middlewares/requestLog.middleware.js";
 import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js";
 import corsMiddleware from "./middlewares/cors.middleware.js";
 import apiKeyMiddleware from "./middlewares/apiKey.middleware.js";
+import { getLogger } from "./utils/logger.js";
 
 
 dotenv.config();
@@ -18,6 +19,8 @@ dotenv.config();
 const app = express();
 
 const port = process.env.PORT || 9000;
+
+const logger = getLogger();
 
 const docs = fs.readFileSync(path.resolve("src/schemas/api.yaml"), "utf8");
 const openapiDocument = yaml.load(docs);
@@ -45,5 +48,5 @@ app.use((req, res, next) => {
 app.use(errorHandlerMiddleware);
 
 app.listen(port, () => {
-  console.log(`Email Sender listening on port ${port}`)
+  logger.info(`Email Sender listening on port ${port}`)
 })

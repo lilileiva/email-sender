@@ -23,35 +23,37 @@ paths:
               properties:
                 file:
                   type: string
-                  format: binary 
+                  format: binary
+                  description: "Optional attached file"
                 from:
                   type: string
+                  description: "Sender name"
+                  example: "John Doe <johndoe@mail.com>"
                 to:
                   type: string
+                  description: "Recipient email or recipients emails separated by comma"
+                  example: "janesmith@mail.com, othermail@mail.com"
                 subject:
                   type: string
-                title:
+                  description: "Email's subject"
+                html:
                   type: string
                   description: Required if HTML template is sent
-                content:
-                  type: string
-                  description: Required if HTML template is sent
-                footer:
-                  type: string
-                  description: Required if HTML template is sent
+                  example: "<html><head><style>.container { width: 100%;height: 100%;padding: 20px;background-color: #f4f4f4ff;font-family: Arial, sans-serif;}.email {width: 80%;margin: 0 auto;background-color: #fff;padding: 20px;}.email-header {background-color: #00aaffff;color: #fff;padding: 20px;text-align: center;}.email-body {padding: 20px;}.email-footer {background-color: #00aaffff;color: #fff;padding: 10px;text-align: center;}</style></head><body><div class='container'><div class='email'><div class='email-header'><h3>${title}</h3></div> <div class='email-body'><p>${content}</p></div><div class='email-footer'><p>${footer}</p></div> </div></div></body></html>"
                 text:
                   type: string
                   description: Required if text email is sent
+                  example: "Hello World!"
               required:
                 - from
                 - to
                 - subject
               oneOf:
                 - required: [text]
-                - required: [content, title, footer]
+                - required: [html]
 
       responses:
-        '201':
+        "201":
           description: Email sent successfully
           content:
             application/json:
@@ -61,7 +63,7 @@ paths:
                   message:
                     type: string
                     example: Email sent successfully
-        '400':
+        "400":
           description: Bad request
           content:
             application/json:
@@ -71,7 +73,7 @@ paths:
                   error:
                     type: string
                     example: Invalid input data
-        '403':
+        "403":
           description: Forbidden
           content:
             application/json:
@@ -81,7 +83,7 @@ paths:
                   error:
                     type: string
                     example: Forbidden
-        '500':
+        "500":
           description: Server error
           content:
             application/json:

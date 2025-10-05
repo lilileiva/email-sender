@@ -1,12 +1,10 @@
- # Email Sender API
+# Email Sender API
 
- Send emails in text plain or html template. You can also attach files.
+Send emails in text plain or html template. You can also attach files.
 
 ## Notes
 
 - The sender email must be a Gmail address. If this doesn’t fit your use case, update the transport function in ./src/utils/mailer.js according to Nodemailer docs.
-
-- The email template can be modified in ./src/utils/template.js
 
 ## Tech Stack
 
@@ -15,7 +13,7 @@
 
 ## Instructions
 
-### 1. Generate email App password 
+### 1. Generate email App password
 
 https://myaccount.google.com/apppasswords
 
@@ -38,6 +36,7 @@ ALLOWED_CORS_DOMAINS="http://localhost:9000,http://otherdomain"
 ```
 npm i
 ```
+
 ```
 npm run dev
 ```
@@ -54,9 +53,8 @@ docker compose up
 
 ### 4. App ready at port 9000 (or defined port)
 
-
 ## Docs
 
 http://localhost:9000/api-docs
 
-![alt text](image.png)
+![API Docs](api-docs.png)

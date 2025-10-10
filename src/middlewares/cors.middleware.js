@@ -10,7 +10,7 @@ const corsMiddleware = (req, res, next) => {
     logger.debug("Origin:", origin);
 
     if (!allowedDomains.includes(origin)) {
-        return res.status(403).json({ error: "Forbidden" });
+        return res.status(401).json({ error: "Unauthorized" });
     }
 
     res.header("Access-Control-Allow-Origin", origin);

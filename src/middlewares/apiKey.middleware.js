@@ -1,4 +1,8 @@
 import crypto from "crypto";
+import { getLogger } from "../utils/logger.js";
+import { UnauthorizedError } from "../errors/UnauthorizedError.js";
+
+const logger = getLogger();
 
 function safeCompare(a, b) {
   const bufferA = Buffer.from(a || "");
@@ -14,7 +18,8 @@ export function apiKeyMiddleware(req, res, next) {
   const key = req.get("x-api-key");
 
   if (!key) {
-    return res.status(401).json({ error: "Missing API key" });
+    logger.debug("API key not provided");
+    throw new UnauthorizedError();
   }
 
   const validKeys = (process.env.API_KEYS || "")
@@ -25,7 +30,8 @@ export function apiKeyMiddleware(req, res, next) {
   const isValid = validKeys.some(validKey => safeCompare(key, validKey));
 
   if (!isValid) {
-    return res.status(401).json({ error: "Unauthorized" });
+    logger.debug("Invalid API key");
+    throw new UnauthorizedError();
   }
 
   next();

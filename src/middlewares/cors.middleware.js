@@ -1,4 +1,6 @@
 import { getLogger } from "../utils/logger.js";
+import { ForbiddenError } from "../errors/ForbiddenError.js";
+
 const allowedDomains = process.env.ALLOWED_CORS_DOMAINS.split(',') || [];
 
 const logger = getLogger();
@@ -7,10 +9,11 @@ const corsMiddleware = (req, res, next) => {
 
     const origin = req.headers["origin"];
 
-    logger.debug("Origin:", origin);
+    logger.debug("Origin request:", origin);
 
     if (!allowedDomains.includes(origin)) {
-        return res.status(403).json({ error: "Forbidden" });
+        logger.warn(`Blocked CORS request from origin: ${origin}`);
+        throw new ForbiddenError();
     }
 
     res.header("Access-Control-Allow-Origin", origin);

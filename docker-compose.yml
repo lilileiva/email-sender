@@ -3,7 +3,7 @@ services:
   email-sender:
     env_file: ".env"
     environment:
-      - PORT=${PORT}
+      - PORT=${PORT:-9000}
     build: .
     container_name: email-sender
     ports:

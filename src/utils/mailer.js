@@ -6,10 +6,9 @@ dotenv.config();
 const logger = getLogger();
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: true,
     auth: {
         user: process.env.SMTP_EMAIL,
         pass: process.env.SMTP_PASS,
@@ -19,7 +18,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (payload, file) => {
     try {
         const mailOptions = {
-            from: payload.from, // from "Example From <from@example.com>"
+            from: `${payload.from} <${process.env.SMTP_EMAIL}>`, // from "John Doe"
             to: payload.to, // receiver "alice@example.com" or list of receivers "alice@example.com, bob@example.com"
             subject: payload.subject,
         };

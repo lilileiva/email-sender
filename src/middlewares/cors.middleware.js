@@ -9,7 +9,7 @@ const corsMiddleware = (req, res, next) => {
 
     const origin = req.headers["origin"];
 
-    logger.debug("Origin request:", origin);
+    logger.debug(`Origin request: ${origin}`);
 
     if (!allowedDomains.includes(origin)) {
         logger.warn(`Blocked CORS request from origin: ${origin}`);

@@ -21,14 +21,14 @@ paths:
             schema:
               type: object
               properties:
-                file:
+                files:
                   type: string
                   format: binary
-                  description: "Optional attached file"
+                  description: "Optional attached file/s"
                 from:
                   type: string
                   description: "Sender name"
-                  example: "John Doe <johndoe@mail.com>"
+                  example: "John Doe"
                 to:
                   type: string
                   description: "Recipient email or recipients emails separated by comma"

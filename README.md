@@ -1,6 +1,6 @@
 # Email Sender API
 
-A lightweight API for sending emails in plain text or HTML templates, with optional file attachment.
+A lightweight API for sending emails in plain text or HTML templates, with optional files attachment.
 
 ## Features
 

@@ -6,6 +6,6 @@ const upload = multer();
 
 const router = express.Router();
 
-router.post('/send-email', upload.single("file"), sendEmailController);
+router.post('/send-email', upload.array("files"), sendEmailController);
 
 export default router;

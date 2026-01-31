@@ -2,7 +2,12 @@ import express from 'express';
 import multer from "multer";
 import { sendEmailController } from "../controllers/index.js";
 
-const upload = multer();
+const upload = multer({
+    limits: {
+        fileSize: 5 * 1024 * 1024, // 5MB
+        files: 5
+    }
+});
 
 const router = express.Router();
 

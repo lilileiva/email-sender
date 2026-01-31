@@ -88,8 +88,11 @@ paths:
           content:
             application/json:
               schema:
-                type: text
-                example: Too many requests, please try again later.
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Too many requests, please try again later.
         "500":
           description: Server error
           content:

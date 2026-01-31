@@ -7,7 +7,7 @@ paths:
   /send-email:
     post:
       summary: Send an email with attachment
-      headers:
+      parameters:
         - name: x-api-key
           in: header
           required: true

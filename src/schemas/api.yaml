@@ -83,6 +83,13 @@ paths:
                   error:
                     type: string
                     example: Forbidden
+        "429":
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                type: text
+                example: Too many requests, please try again later.
         "500":
           description: Server error
           content:

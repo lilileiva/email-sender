@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (payload, files) => {
     try {
         const mailOptions = {
-            from: `${payload.from}`, // from "John Doe <mail@example.com>"
+            from: `${payload.from} <${process.env.SMTP_EMAIL}>`, // from "John Doe"
             to: payload.to.toString(), // receiver "alice@example.com" or list of receivers "alice@example.com, bob@example.com"
             subject: payload.subject.toString(),
         };
@@ -33,8 +33,8 @@ const sendEmail = async (payload, files) => {
             for (const f of files) {
                 mailOptions.attachments.push({
                     filename: f.originalname,
-                    content: Buffer.from(f.buffer, "hex"),
-                    contentType: "application/octet-stream",
+                    content: f.buffer,
+                    contentType: f.mimetype,
                 });
             }
         }

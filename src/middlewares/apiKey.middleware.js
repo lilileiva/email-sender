@@ -15,7 +15,7 @@ function safeCompare(a, b) {
 }
 
 export function apiKeyMiddleware(req, res, next) {
-  const key = req.get("x-api-key");
+  const key = req.get("x-api-key" || "X-Api-Key");
 
   if (!key) {
     logger.debug("API key not provided");

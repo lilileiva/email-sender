@@ -1,13 +1,15 @@
 import { getLogger } from "../utils/logger.js";
 import { ForbiddenError } from "../errors/ForbiddenError.js";
 
-const allowedDomains = process.env.ALLOWED_CORS_DOMAINS.split(',') || [];
+const allowedDomains = (
+    process.env.ALLOWED_CORS_DOMAINS && process.env.ALLOWED_CORS_DOMAINS.split(',')
+) || [];
 
 const logger = getLogger();
 
 const corsMiddleware = (req, res, next) => {
 
-    const origin = req.headers["origin"];
+    const origin = req.headers["origin"] || req.headers["host"];
 
     logger.debug(`Origin request: ${origin}`);
 

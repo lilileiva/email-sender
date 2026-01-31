@@ -9,7 +9,7 @@ const logger = getLogger();
 
 const corsMiddleware = (req, res, next) => {
 
-    const origin = req.headers["origin"];
+    const origin = req.headers["origin"] || req.headers["host"];
 
     logger.debug(`Origin request: ${origin}`);
 

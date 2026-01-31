@@ -5,7 +5,6 @@ import swaggerUi from "swagger-ui-express";
 import yaml from "js-yaml";
 import fs from "fs";
 import path from "path";
-import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 
 import router from './routes/index.js';
@@ -13,6 +12,7 @@ import requestLogMiddleware from "./middlewares/requestLog.middleware.js";
 import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js";
 import corsMiddleware from "./middlewares/cors.middleware.js";
 import apiKeyMiddleware from "./middlewares/apiKey.middleware.js";
+import rateLimitMiddleware from "./middlewares/rateLimit.middleware.js";
 import { getLogger } from "./utils/logger.js";
 
 dotenv.config();
@@ -43,7 +43,7 @@ app.get('/healthz', (req, res) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiDocument));
 
-app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
+app.use(rateLimitMiddleware);
 
 app.use('', router);
 app.use((req, res, next) => {

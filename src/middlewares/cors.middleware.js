@@ -1,7 +1,9 @@
 import { getLogger } from "../utils/logger.js";
 import { ForbiddenError } from "../errors/ForbiddenError.js";
 
-const allowedDomains = process.env.ALLOWED_CORS_DOMAINS.split(',') || [];
+const allowedDomains = (
+    process.env.ALLOWED_CORS_DOMAINS && process.env.ALLOWED_CORS_DOMAINS.split(',')
+) || [];
 
 const logger = getLogger();
 
